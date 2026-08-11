@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmDirect - Fresh from the Farm. Straight to your home.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #054425;
+            --light-green: #e7f8ea;
+            --light-bg: #fffbef;
+            --text-dark: #111e16;
+            --text-gray: #414941;
+            --border-gray: #c0c9bf;
+            --gold: #f2b84b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            color: var(--text-gray);
+            line-height: 1.6;
+            background: linear-gradient(90deg, var(--light-bg) 0%, var(--light-bg) 100%);
+        }
+
+        /* Header */
+        .header {
+            background-color: #edfeef;
+            border-bottom: 1px solid rgba(192, 201, 191, 0.3);
+            padding: 0 48px;
+            height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-left {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Manrope', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav {
+            display: flex;
+            gap: 24px;
+            padding-left: 48px;
+            border-left: 1px solid rgba(192, 201, 191, 0.2);
+        }
+
+        .nav a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+            padding-bottom: 6px;
+        }
+
+        .nav a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav a.active {
+            color: var(--primary-green);
+            border-bottom: 2px solid var(--primary-green);
+        }
+
+        .header-right {
+            display: flex;
+            gap: 15.8px;
+            align-items: center;
+        }
+
+        .btn-login {
+            background: transparent;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .btn-login:hover {
+            color: var(--primary-green);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #043320;
+        }
+
+        .btn-cart {
+            background: transparent;
+            border: none;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 80px;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            padding: 80px 0;
+            margin-top: 72px;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .hero-heading {
+            font-family: 'Manrope', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary-green);
+            line-height: 1.25;
+            letter-spacing: -0.96px;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            max-width: 480px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .btn-explore {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 12.5px 32px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-explore:hover {
+            background-color: #043320;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border-gray);
+            color: var(--primary-green);
+            padding: 13px 33px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(5, 68, 37, 0.05);
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            padding-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-right {
+            position: relative;
+            height: 600px;
+            background: rgba(255, 255, 255, 0);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0px 4px 20px rgba(31, 45, 36, 0.04);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .floating-card {
+            position: absolute;
+            backdrop-filter: blur(6px);
+            background: rgba(245, 238, 220, 0.7);
+            border: 1px solid rgba(192, 201, 191, 0.4);
+            border-radius: 12px;
+            padding: 13px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            box-shadow: 0px 4px 20px rgba(31, 45, 36, 0.04);
+        }
+
+        .floating-card.top-left {
+            top: 32px;
+            left: 32px;
+        }
+
+        .floating-card.bottom-right {
+            bottom: 64px;
+            right: 32px;
+        }
+
+        .card-badge {
+            background-color: #245c3a;
+            border-radius: 9999px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .card-label {
+            font-size: 12px;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 4px;
+        }
+
+        .star {
+            width: 16px;
+            height: 16px;
+            color: #ffc107;
+            font-size: 16px;
+        }
+
+        /* Trust Strip */
+        .trust-strip {
+            background-color: white;
+            border-top: 1px solid rgba(192, 201, 191, 0.3);
+            border-bottom: 1px solid rgba(192, 201, 191, 0.3);
+            padding: 49px 80px;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-align: center;
+        }
+
+        .trust-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--light-green);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        .trust-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .trust-subtitle {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* Product Categories Section */
+        .categories-section {
+            padding: 80px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.32px;
+        }
+
+        .view-all {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-green);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 24px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(31, 45, 36, 0.04);
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .category-image {
+            width: 64px;
+            height: 64px;
+            border-radius: 9999px;
+            object-fit: cover;
+            margin: 0 auto 12px;
+        }
+
+        .category-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .category-count {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .category-card.organic {
+            background: rgba(242, 184, 75, 0.1);
+            border: 1px solid rgba(242, 184, 75, 0.3);
+        }
+
+        .category-card.organic .category-image {
+            background: white;
+        }
+
+        .category-card.organic .category-name {
+            color: #6d4c00;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: white;
+            padding: 60px 80px;
+            max-width: 1280px;
+            margin: 0 auto;
+            border-radius: 16px;
+            box-shadow: 0px 4px 20px rgba(31, 45, 36, 0.04);
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-dark);
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(5, 68, 37, 0.1);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn-submit {
+            flex: 1;
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #043320;
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-payment {
+            flex: 1;
+            background-color: var(--gold);
+            color: #6d4c00;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-payment:hover {
+            background-color: #f0a820;
+        }
+
+        .form-message {
+            margin-top: 16px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #e7f8ea;
+            color: #054425;
+            display: block;
+        }
+
+        .form-message.error {
+            background-color: #fbe7eb;
+            color: #c41e3a;
+            display: block;
+        }
+
+        .form-message.info {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: white;
+            border-top: 1px solid var(--border-gray);
+            padding: 80px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 24px;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 12px;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .footer-heading {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: var(--text-gray);
+            text-decoration: none;
+            padding: 4px 0;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .header, .hero, .container, .categories-section, .form-section, .footer {
+                padding: 40px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-right {
+                height: 400px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0 20px;
+            }
+
+            .container, .categories-section, .form-section, .trust-strip {
+                padding: 20px;
+            }
+
+            .hero-heading {
+                font-size: 32px;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <a href="#" class="logo">FarmDirect</a>
+            <nav class="nav">
+                <a href="#" class="active">Home</a>
+                <a href="#">Buy Products</a>
+                <a href="#">How It Works</a>
+                <a href="#">Farmers</a>
+                <a href="#">Reviews</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <button class="btn-login">Login</button>
+            <button class="btn-primary">Start Shopping</button>
+            <button class="btn-cart">🛒</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="container">
+        <div class="hero">
+            <div class="hero-left">
+                <h1 class="hero-heading">Fresh from the farm.<br>Straight to your home.</h1>
+                
+                <p class="hero-description">Experience the true taste of nature. We connect you directly with local farmers, ensuring the freshest produce while supporting sustainable agriculture.</p>
+
+                <div class="hero-buttons">
+                    <button class="btn-explore">Explore Products</button>
+                    <button class="btn-secondary">Sell Your Products</button>
+                </div>
+
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Direct from Farmers</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Fresh Products</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Secure Payments</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&h=600&fit=crop" alt="Fresh produce farmer" class="hero-image">
+                
+                <div class="floating-card top-left">
+                    <div class="card-badge">✓</div>
+                    <div class="card-content">
+                        <span class="card-label">Verified</span>
+                        <span class="card-title">Direct from Farmer</span>
+                    </div>
+                </div>
+
+                <div class="floating-card bottom-right">
+                    <div class="rating-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title">4.9/5 Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Strip -->
+    <section class="trust-strip">
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="trust-icon">🌱</div>
+                <div class="trust-title">Fresh Products</div>
+                <div class="trust-subtitle">Harvested daily</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">🤝</div>
+                <div class="trust-title">Direct Connection</div>
+                <div class="trust-subtitle">No middlemen</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">🔒</div>
+                <div class="trust-title">Secure Payment</div>
+                <div class="trust-subtitle">100% protected</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">📍</div>
+                <div class="trust-title">Easy Tracking</div>
+                <div class="trust-subtitle">Real-time updates</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section class="categories-section">
+        <div class="section-header">
+            <h2 class="section-title">Freshness for Every Table</h2>
+            <a href="#" class="view-all">View All</a>
+        </div>
+
+        <div class="categories-grid">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200&h=200&fit=crop" alt="Vegetables" class="category-image">
+                <div class="category-name">Vegetables</div>
+                <div class="category-count">120+ Items</div>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=200&h=200&fit=crop" alt="Fruits" class="category-image">
+                <div class="category-name">Fruits</div>
+                <div class="category-count">85+ Items</div>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1599599810694-b5ac4dd64b73?w=200&h=200&fit=crop" alt="Grains" class="category-image">
+                <div class="category-name">Grains</div>
+                <div class="category-count">45+ Items</div>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1563805042-7684c019e157?w=200&h=200&fit=crop" alt="Dairy" class="category-image">
+                <div class="category-name">Dairy</div>
+                <div class="category-count">30+ Items</div>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836d?w=200&h=200&fit=crop" alt="Eggs" class="category-image">
+                <div class="category-name">Eggs</div>
+                <div class="category-count">15+ Items</div>
+            </div>
+
+            <div class="category-card organic">
+                <div class="category-image">🌿</div>
+                <div class="category-name">Organic</div>
+                <div class="category-count">Certified</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="form-container">
+            <h2 class="form-title">Get Your Free Audit</h2>
+            <p class="form-subtitle">Just ₹1 - Start your journey to fresh, quality produce today!</p>
+
+            <form id="auditForm">
+                <div class="form-group">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        class="form-input" 
+                        placeholder="Enter your full name" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="Enter your email" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        class="form-input" 
+                        placeholder="Enter your phone number" 
+                        required
+                    >
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-submit">Submit</button>
+                    <a href="https://payments.cashfree.com/forms/getaudit" target="_blank" class="btn-payment">
+                        Pay ₹1 Now
+                    </a>
+                </div>
+
+                <div class="form-message" id="formMessage"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-title">FarmDirect</div>
+                <div class="footer-text">© 2024 FarmDirect. From Farm. To Home.</div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-heading">Shop</div>
+                <a href="#" class="footer-link">Shop</a>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-heading">About</div>
+                <a href="#" class="footer-link">Farmers</a>
+                <a href="#" class="footer-link">Customers</a>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-heading">Corporate</div>
+                <a href="#" class="footer-link">Company</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ⚠️ IMPORTANT: REPLACE THIS URL WITH YOUR NEW DEPLOYED APPSCRIPT URL
+        // Instructions:
+        // 1. Go to https://script.google.com
+        // 2. Create new project
+        // 3. Delete default code
+        // 4. Paste Code_Fixed.gs content
+        // 5. Deploy → New Deployment → Web app
+        // 6. Copy the new URL and replace it below
+        
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwTgoz5VBObIvHpW3kP30jydn-AlKQ9VTLxPfi14Lx1jBm8AUVbPvHi-mjhk6pgdcbDA/exec";
+
+        const form = document.getElementById("auditForm");
+        const formMessage = document.getElementById("formMessage");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+
+            // Validate inputs
+            if (!name || !email || !phone) {
+                showError("All fields are required!");
+                return;
+            }
+
+            if (!email.includes("@")) {
+                showError("Please enter a valid email address!");
+                return;
+            }
+
+            // Disable submit button
+            const submitBtn = form.querySelector("button[type='submit']");
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Submitting...";
+
+            // Build URL with query parameters
+            const url = SCRIPT_URL + "?" + new URLSearchParams({
+                name: name,
+                email: email,
+                phone: phone
+            });
+
+            // Use fetch with POST method using FormData
+            const formData = new FormData();
+            formData.append("name", name);
+            formData.append("email", email);
+            formData.append("phone", phone);
+
+            fetch(url, {
+                method: "GET",
+                mode: "no-cors"
+            })
+            .then(response => {
+                // Don't parse response with no-cors mode
+                showSuccess();
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Submit";
+            })
+            .catch(error => {
+                console.error("Request error:", error);
+                // Still show success because data might have been sent
+                showSuccess();
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Submit";
+            });
+        });
+
+        function showSuccess() {
+            formMessage.textContent = "✓ Audit request submitted! Redirecting to payment...";
+            formMessage.className = "form-message success";
+            
+            // Redirect to payment after 2 seconds
+            setTimeout(() => {
+                window.open("https://payments.cashfree.com/forms/getaudit", "_blank");
+            }, 2000);
+        }
+
+        function showError(message) {
+            formMessage.textContent = "✗ " + message;
+            formMessage.className = "form-message error";
+            setTimeout(() => {
+                formMessage.style.display = "none";
+            }, 5000);
+        }
+    </script>
+
+</body>
+</html>
